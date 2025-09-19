@@ -2,12 +2,12 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const env = {
-  NODE_ENV: process.env.NODE_ENV || "development",
+  NODE_ENV: process.env.NODE_ENV,
   BASE_URL: process.env.BASE_URL,
   MONGO_URI: process.env.MONGO_URI || "mongodb://localhost:27017/kost-app",
   PORT: Number(process.env.PORT || 8000),
   FRONTEND_URL: process.env.FRONTEND_URL,
-  REDIS_URL: process.env.REDIS_URL || "", // e.g. redis://default:password@host:port
+  REDIS_URL: process.env.REDIS_URL, // e.g. redis://default:password@host:port
 
   CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
   CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
@@ -33,7 +33,4 @@ export const env = {
   SMTP_SECURE: process.env.SMTP_SECURE,
   SMTP_USER: process.env.SMTP_USER,
   SMTP_PASSWORD: process.env.SMTP_PASSWORD,
-
-  COOKIE_SECURE: process.env.COOKIE_SECURE === "true",
-  COOKIE_DOMAIN: process.env.COOKIE_DOMAIN || "localhost",
 };
