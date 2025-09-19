@@ -3,10 +3,10 @@ dotenv.config();
 
 export const env = {
   NODE_ENV: process.env.NODE_ENV || "development",
-  BASE_URL: process.env.BASE_URL || "http://localhost:8000",
+  BASE_URL: process.env.BASE_URL,
   MONGO_URI: process.env.MONGO_URI || "mongodb://localhost:27017/kost-app",
   PORT: Number(process.env.PORT || 8000),
-  FRONTEND_URL: process.env.FRONTEND_URL || "http://localhost:3000",
+  FRONTEND_URL: process.env.FRONTEND_URL,
   REDIS_URL: process.env.REDIS_URL || "", // e.g. redis://default:password@host:port
 
   CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,

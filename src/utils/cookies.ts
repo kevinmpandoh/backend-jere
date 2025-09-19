@@ -8,9 +8,9 @@ export function setAuthCookies(
 ) {
   const common = {
     httpOnly: true as const,
-    // secure: true,
-    sameSite: "none" as const,
     secure: env.COOKIE_SECURE,
+    sameSite: "none" as const,
+    // secure: true,
     // domain: env.COOKIE_DOMAIN,
   };
   res.cookie("accessToken", accessToken, {
@@ -29,14 +29,14 @@ export function clearAuthCookies(res: Response) {
   res.clearCookie("accessToken", {
     path: "/",
     sameSite: "none",
-    secure: false,
+    secure: env.COOKIE_SECURE,
     // secure: env.COOKIE_SECURE,
     // domain: env.COOKIE_DOMAIN,
   });
   res.clearCookie("refreshToken", {
     path: "/",
     sameSite: "none",
-    secure: false,
+    secure: env.COOKIE_SECURE,
     // secure: env.COOKIE_SECURE,
     // domain: env.COOKIE_DOMAIN,
   });
