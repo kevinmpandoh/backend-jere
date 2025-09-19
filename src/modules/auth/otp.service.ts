@@ -34,13 +34,6 @@ export async function sendRegistrationOtp(
   await redis.set(key, JSON.stringify({ ...payload, otp }), "EX", OTP_TTL);
   await redis.set(cooldownKey, "1", "EX", OTP_COOLDOWN);
 
-  // await transporter.sendMail({
-  //   from: `"Aplikasi Kost" <${process.env.SMTP_USER}>`,
-  //   to: email,
-  //   subject: "Kode OTP Verifikasi - Aplikasi Kost",
-  //   html: otpTemplate(payload.name, otp),
-  // });
-
   await sendMail(email, "Verifikasi Akun Kost", otpTemplate(name, otp));
   return { sent: true };
 }

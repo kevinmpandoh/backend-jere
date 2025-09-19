@@ -109,6 +109,13 @@ export const googleCallbackRedirect = [
         req.user
       );
 
+      console.log(
+        accessToken,
+        refreshToken,
+        env.FRONTEND_URL,
+        "TESTING LOGIN GOOGLE"
+      );
+
       setAuthCookies(res, accessToken, refreshToken);
 
       res.redirect(`${env.FRONTEND_URL}/`);

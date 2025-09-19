@@ -4,7 +4,7 @@ dotenv.config();
 export const env = {
   NODE_ENV: process.env.NODE_ENV,
   BASE_URL: process.env.BASE_URL,
-  MONGO_URI: process.env.MONGO_URI || "mongodb://localhost:27017/kost-app",
+  MONGO_URI: process.env.MONGO_URI,
   PORT: Number(process.env.PORT || 8000),
   FRONTEND_URL: process.env.FRONTEND_URL,
   REDIS_URL: process.env.REDIS_URL, // e.g. redis://default:password@host:port
@@ -29,7 +29,7 @@ export const env = {
 
   EMAIL_FROM: process.env.EMAIL_FROM || process.env.SMTP_USER,
   SMTP_HOST: process.env.SMTP_HOST,
-  SMTP_PORT: Number(process.env.SMTP_PORT) || 587,
+  SMTP_PORT: Number(process.env.SMTP_PORT),
   SMTP_SECURE: process.env.SMTP_SECURE,
   SMTP_USER: process.env.SMTP_USER,
   SMTP_PASSWORD: process.env.SMTP_PASSWORD,

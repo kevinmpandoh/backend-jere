@@ -25,7 +25,8 @@ export async function registerRequest(input: any) {
     });
 
   // Simpan sementara di Redis + kirim OTP
-  await sendRegistrationOtp(input.email, input.name, input);
+  const tes = await sendRegistrationOtp(input.email, input.name, input);
+  console.log(tes, "TES");
   return {
     phone: input.phone,
     email: input.email,
