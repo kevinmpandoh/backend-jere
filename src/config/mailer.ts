@@ -21,7 +21,7 @@ export async function sendMail(to: string, subject: string, html: string) {
     "TESTING JO"
   );
   const info = await transporter.sendMail({
-    from: env.EMAIL_FROM,
+    from: env.EMAIL_FROM!,
     to,
     subject,
     html,
