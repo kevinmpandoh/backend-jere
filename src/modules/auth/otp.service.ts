@@ -1,4 +1,4 @@
-import { sendMail, transporter } from "@/config/mailer";
+import { sendMail } from "@/config/mailer";
 import { redis } from "@/config/redis";
 import { generateOtp, OTP_COOLDOWN, OTP_TTL } from "@/utils/otp";
 import { otpTemplate } from "@/utils/email-template";

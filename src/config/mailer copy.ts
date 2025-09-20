@@ -1,7 +1,5 @@
-import { env } from "./env";
 import nodemailer from "nodemailer";
-
-import { Resend } from "resend";
+import { env } from "./env";
 
 export const transporter = nodemailer.createTransport({
   host: env.SMTP_HOST!,
@@ -13,14 +11,12 @@ export const transporter = nodemailer.createTransport({
   },
 });
 
-const resend = new Resend("re_W2dnVwd4_5wyNBQyeHYQG5z3eHWfTMRVJ");
-
 export async function sendMail(to: string, subject: string, html: string) {
-  const info = await resend.emails.send({
+  const info = await transporter.sendMail({
     from: "noreply@resend.dev",
     to,
     subject,
     html,
   });
-  if (env.NODE_ENV !== "production") console.log("Email sent:", info);
+  if (env.NODE_ENV !== "production") console.log("Email sent:", info.messageId);
 }
