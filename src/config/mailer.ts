@@ -17,7 +17,7 @@ const resend = new Resend("re_W2dnVwd4_5wyNBQyeHYQG5z3eHWfTMRVJ");
 
 export async function sendMail(to: string, subject: string, html: string) {
   const info = await resend.emails.send({
-    from: "noreply@resend.dev",
+    from: "noreply@wuwuk.my.id",
     to,
     subject,
     html,

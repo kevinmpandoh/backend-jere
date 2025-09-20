@@ -36,6 +36,8 @@ const getAll = async (query: any) => {
     result.docs.map(async (kost: any) => {
       const roomTypes = kost.roomTypes;
 
+      console.log(roomTypes.facilities);
+
       // urutkan foto
       const sortedTypePhotos = [...roomTypes.photos].sort((a: any, b: any) => {
         if (
@@ -63,10 +65,13 @@ const getAll = async (query: any) => {
       const reviews = roomTypes.reviews ?? [];
       const averageRating =
         reviews.length > 0
-          ? reviews.reduce((sum: number, r: any) => sum + r.rating, 0) /
-            reviews.length
+          ? parseFloat(
+              (
+                reviews.reduce((sum: number, r: any) => sum + r.rating, 0) /
+                reviews.length
+              ).toFixed(2)
+            )
           : 0;
-
       // ✅ Hitung total transaksi
       const totalTransactions = await bookingRepository.count({
         roomType: roomTypes._id,
@@ -196,8 +201,12 @@ const getDetailKostPublic = async (roomTypeId: string) => {
 
   const averageRating =
     reviews.length > 0
-      ? reviews.reduce((sum: number, r: any) => sum + r.rating, 0) /
-        reviews.length
+      ? parseFloat(
+          (
+            reviews.reduce((sum: number, r: any) => sum + r.rating, 0) /
+            reviews.length
+          ).toFixed(2)
+        )
       : 0;
 
   return {
