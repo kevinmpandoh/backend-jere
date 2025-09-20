@@ -1,6 +1,7 @@
 // seeders/userSeeder.ts
-
 import { User } from "@/modules/user/user.model";
+import { Package } from "@/modules/package/package.model";
+import { Subscription } from "@/modules/subscription/subscription.model";
 import bcrypt from "bcryptjs";
 
 const userSeeder = async () => {
@@ -13,7 +14,7 @@ const userSeeder = async () => {
         name: "Admin",
         email: "admin@gmail.com",
         phone: "08123467123",
-        password: await bcrypt.hash("password", 10), // pastikan dihash beneran
+        password: await bcrypt.hash("password", 10),
         role: "admin",
         isVerified: true,
       },
@@ -54,9 +55,27 @@ const userSeeder = async () => {
       },
     ]);
 
-    // Menambahkan data user baru ke database
+    console.log("User seeder completed successfully");
 
-    console.log("Tenant seeder completed successfully");
+    // ✅ Tambahkan Subscription Gratis untuk Owner
+    const freePackage = await Package.findOne({ type: "free" });
+    if (!freePackage) {
+      throw new Error("Free package not found, seed packages first!");
+    }
+
+    const owners = await User.find({ role: "owner" });
+
+    const subscriptions = owners.map((owner) => ({
+      owner: owner._id,
+      package: freePackage._id,
+      status: "active",
+      duration: 0,
+      startDate: new Date(),
+      endDate: null,
+    }));
+
+    await Subscription.insertMany(subscriptions);
+    console.log("Free subscriptions assigned to all owners!");
   } catch (error) {
     console.error("Error seeding users:", error);
   }

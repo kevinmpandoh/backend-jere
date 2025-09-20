@@ -10,7 +10,6 @@ export function setAuthCookies(
     httpOnly: true as const,
     secure: true,
     sameSite: "none" as const,
-    // secure: true,
     // domain: env.COOKIE_DOMAIN,
   };
   res.cookie("accessToken", accessToken, {
@@ -23,6 +22,7 @@ export function setAuthCookies(
     path: "/",
     maxAge: 1000 * 60 * 60 * 24 * 7,
   });
+  console.log(common, refreshToken, accessToken, "TES");
 }
 
 export function clearAuthCookies(res: Response) {

@@ -36,7 +36,7 @@ const getAll = async (query: any) => {
     result.docs.map(async (kost: any) => {
       const roomTypes = kost.roomTypes;
 
-      console.log(roomTypes.facilities);
+      console.log(roomTypes.reviews, "REVIEWNYA");
 
       // urutkan foto
       const sortedTypePhotos = [...roomTypes.photos].sort((a: any, b: any) => {

@@ -120,6 +120,27 @@ export class KostRepository extends BaseRepository<IKost> {
       },
     });
 
+    pipeline.push({
+      $lookup: {
+        from: "reviews",
+        let: { reviewIds: "$roomTypes.reviews" }, // ambil isi array ObjectId
+        pipeline: [
+          {
+            $match: {
+              $expr: { $in: ["$_id", "$$reviewIds"] }, // cari yang id-nya ada di array
+            },
+          },
+        ],
+        as: "reviewsTemp",
+      },
+    });
+
+    pipeline.push({
+      $addFields: {
+        "roomTypes.reviews": "$reviewsTemp", // timpa field reviews lama
+      },
+    });
+
     // 5. FILTER price
     if (minPrice !== undefined && maxPrice) {
       pipeline.push({
