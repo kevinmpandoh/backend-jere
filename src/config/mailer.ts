@@ -12,16 +12,8 @@ export const transporter = nodemailer.createTransport({
 });
 
 export async function sendMail(to: string, subject: string, html: string) {
-  console.log(
-    env.SMTP_HOST!,
-    env.SMTP_PORT!,
-    env.SMTP_SECURE === "true",
-    env.SMTP_USER!,
-    env.SMTP_PASSWORD!,
-    "TESTING JO"
-  );
   const info = await transporter.sendMail({
-    from: env.EMAIL_FROM!,
+    from: "noreply@resend.dev",
     to,
     subject,
     html,
