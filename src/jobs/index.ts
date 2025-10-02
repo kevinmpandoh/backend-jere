@@ -11,6 +11,8 @@ export async function startJobs() {
   await agenda.every("0 9 * * *", "reminder-subscription-expired"); // tiap jam 09:00 pagi
   await agenda.every("0 * * * *", "mark-overdue-booking-invoices");
   await agenda.every("0 0 * * *", "check-subscription-expired"); // tiap jam 00:00
+  await agenda.every("0 8 * * *", "reminder-tenant-invoice");
+  // jalan tiap hari jam 8 pagi
 
   console.log("📅 Agenda jobs scheduled");
 }

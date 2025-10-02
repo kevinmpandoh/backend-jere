@@ -9,7 +9,6 @@ import kostRouter from "../modules/kost/routes";
 import dashboardRouter from "../modules/dashboard/dashboard.route";
 import roomTypeRouter from "../modules/room-type/room-type.routes";
 import paymentRoutes from "../modules/payment/payment.routes";
-import wishlistRouter from "../modules/wishlist/wishlist.route";
 import chatRouter from "../modules/chat/chat.routes";
 import notificationRouter from "../modules/notification/notification.routes";
 
@@ -30,15 +29,11 @@ router.use("/room-type", roomTypeRouter);
 router.use("/rooms", roomRouter);
 router.use("/photo-kosts", photoKostRouter);
 router.use("/photo-rooms", photoRoomRouter);
-router.use("/wishlists", wishlistRouter);
 router.use("/chat", chatRouter);
 router.use("/notifications", notificationRouter);
 router.use("/payouts", payoutRouter);
 
 router.use("/reviews", reviewRouter);
-router.use("/wishlists", wishlistRouter);
-
-router.use("/wishlists", wishlistRouter);
 
 router.use("/packages", packageRouter);
 router.use("/subscriptions", subscriptionRouter);
