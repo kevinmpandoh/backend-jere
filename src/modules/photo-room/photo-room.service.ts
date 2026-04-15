@@ -16,7 +16,7 @@ export const photoRoomService = {
     roomTypeId: string,
     file: Express.Multer.File,
     category: PhotoRoomCategory,
-    ownerId: string
+    ownerId: string,
   ) {
     // if (!req.file) throw new ResponseError(400, "Foto belum di upload");
 
@@ -45,6 +45,7 @@ export const photoRoomService = {
   },
 
   async deletePhoto(photoId: string) {
+    console.log("Deleting photo with ID:", photoId);
     const photo = await photoRoomRepository.findById(photoId);
     if (!photo || !photo.roomType)
       throw new ResponseError(404, "Foto tidak ditemukan");
@@ -64,7 +65,7 @@ export const photoRoomService = {
   async replacePhoto(
     photoId: string,
     file: Express.Multer.File,
-    category?: PhotoRoomCategory
+    category?: PhotoRoomCategory,
   ) {
     const oldPhoto = await photoRoomRepository.findById(photoId);
     if (!oldPhoto) throw new ResponseError(404, "Foto tidak ditemukan");
